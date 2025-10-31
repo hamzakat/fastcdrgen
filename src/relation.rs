@@ -1,11 +1,13 @@
 use crate::customer::Customer;
+use serde::Serialize;
 
-#[derive(Clone, Debug)]
+#[derive(Serialize, Clone, Debug)]
 pub enum RelationType {
     FRIEND,
     FAMILY,
     BUSINESS,
     OTHER,
+    UNDEFINED,
 }
 
 

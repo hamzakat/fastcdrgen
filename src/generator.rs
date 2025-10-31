@@ -10,7 +10,8 @@ pub struct Generator{
     operators: Vec<Operator>,
     customers: Vec<Customer>,
     relations: Vec<Relation>,
-    cfg: Config
+    cfg: Config,
+    with_relations: bool
 
 }
 
@@ -232,12 +233,12 @@ impl Generator{
 
 
 
-    pub fn new( _cfg:Config) -> Self {
+    pub fn new( _cfg:Config, _with_relations: bool) -> Self {
         let operators = Self::generate_operators(_cfg.clone().market.local_operators.len() as u16, _cfg.clone().market.intl_operators.len() as u16);
         let customers = Self::generate_customers(_cfg.clone(), operators.clone(), );
         let relations = Self::generate_relations(_cfg.clone(), customers.clone());
 
-        Generator { operators, customers, relations, cfg:_cfg}
+        Generator { operators, customers, relations, cfg:_cfg, with_relations: _with_relations}
     }
     
 
@@ -323,7 +324,8 @@ impl Generator{
                         customer_profile: r.from.customer_profile.clone(),
                         voice_call_result: get_voice_call_result(),
                         roaming: r.from.operator.intl,
-                        scenario: r.from.scenario.clone()
+                        scenario: r.from.scenario.clone(),
+                        relaton_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
                     };
 
                         cdr_batch.push(tmp_cdr);
@@ -365,7 +367,8 @@ impl Generator{
                         customer_profile: r.from.customer_profile.clone(),
                         voice_call_result: get_voice_call_result(),
                         roaming: r.from.operator.intl, 
-                        scenario: r.from.scenario.clone()
+                        scenario: r.from.scenario.clone(),
+                        relaton_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
                     };
 
                         cdr_batch.push(tmp_cdr);
@@ -407,7 +410,8 @@ impl Generator{
                         customer_profile: r.from.customer_profile.clone(),
                         voice_call_result: get_voice_call_result(),
                         roaming: r.from.operator.intl, 
-                        scenario: r.from.scenario.clone()
+                        scenario: r.from.scenario.clone(),
+                        relaton_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
                     };
 
                         cdr_batch.push(tmp_cdr);
@@ -450,7 +454,8 @@ impl Generator{
                         customer_profile: self.customers[from_idx].clone().customer_profile,
                         voice_call_result: get_voice_call_result(),
                         roaming: if rng.gen_bool(0.05) { 1 } else { 0 }, 
-                        scenario: self.customers[from_idx].clone().scenario
+                        scenario: self.customers[from_idx].clone().scenario,
+                        relaton_type: if self.with_relations { Some(RelationType::UNDEFINED) } else { None }
                     };
 
                 cdr_batch.push(tmp_cdr);

@@ -71,4 +71,6 @@ pub struct Technical {
     pub batch_size:u32,
     pub detailed_resut_filename:String,
     pub agg_resut_filename:String,
+    #[serde(default)]
+    pub with_relations: bool,
 }
