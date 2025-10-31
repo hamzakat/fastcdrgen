@@ -6,7 +6,7 @@
 - **Markov Chain-Based Simulation**: Generates realistic CDRs by modeling user behavior and relationships.
 - **Highly Configurable**: Control the number of users, operators, BTS (base transceiver stations), and call/message distributions.
 - **Flexible Output**: Easily set simulation parameters such as call durations, relationship types, and output filenames.
-- **Multiple Use Cases**: Useful for testing telecom fraud detection, network analysis, and other telecom-related research.
+- **Optional relation type column**: Enable an extra `relaton_type` column for validation/debugging.
 
 ---
 
@@ -217,6 +217,7 @@ start_date = "2025-01-01"
 batch_size = 200000
 detailed_resut_filename = "results/sample.csv"
 agg_resut_filename = "results/cdr4_agg.csv"
+with_relations = false  # set to true to include `relaton_type` in output
 
 ```
 
@@ -233,7 +234,7 @@ agg_resut_filename = "results/cdr4_agg.csv"
    ```
 3. Build the project using Rust's package manager, `cargo`:
    ```bash
-   cargo build --release
+   cargo build --release # you will find the built binary inside ./target/release
    ```
 
 ---
@@ -249,7 +250,10 @@ agg_resut_filename = "results/cdr4_agg.csv"
    ```
 
 3. **Output**:
-   The generated dataset will be saved to the file specified in `resut_filename`.
+   - The generated dataset will be saved to the file specified in `detailed_resut_filename`.
+   - To include the relation type used during simulation, set `with_relations = true` in `[technical]`.
+     - When enabled, the CSV includes a `relaton_type` column.
+     - For random-noise records (not derived from a simulated relation), `relaton_type` is `UNDEFINED`.
 
 ---
 

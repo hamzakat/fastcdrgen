@@ -74,7 +74,7 @@ fn main() {
 
     println!("Starting for config: {:?}...", consts::CONFIG_FILE);
     let cfg = Config::from_config_file(consts::CONFIG_FILE).unwrap();
-    let gen = Generator::new(cfg.clone());
+    let gen = Generator::new(cfg.clone(), cfg.technical.with_relations);
 
     for (name, profile) in &cfg.scenarios {
         println!("Profile name: {}", name);

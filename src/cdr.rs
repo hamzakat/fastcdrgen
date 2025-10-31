@@ -2,6 +2,7 @@ use serde::Serialize;
 use uuid::Uuid;
 
 use crate::customer::{CustomerProfile, CustomerType};
+use crate::relation::RelationType;
 #[derive(Serialize, Clone, Debug)]
 pub enum ContactType {
     VOICE,
@@ -59,7 +60,9 @@ pub struct CDR{
     pub voice_call_result: VoiceCallResult,
     pub roaming: u8,
     pub customer_profile: CustomerProfile,
-    pub scenario: String
+    pub scenario: String,
+    #[serde(skip_serializing_if = "Option::is_none", rename = "relaton_type")]
+    pub relaton_type: Option<RelationType>
 
 
 }

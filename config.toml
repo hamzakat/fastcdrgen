@@ -201,3 +201,4 @@ start_date = "2025-01-01"
 batch_size = 200000
 detailed_resut_filename = "results/sample.csv"
 agg_resut_filename = "results/cdr4_agg.csv"
+with_relations = false
