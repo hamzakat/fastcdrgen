@@ -61,8 +61,8 @@ pub struct CDR{
     pub roaming: u8,
     pub customer_profile: CustomerProfile,
     pub scenario: String,
-    #[serde(skip_serializing_if = "Option::is_none", rename = "relaton_type")]
-    pub relaton_type: Option<RelationType>
+    #[serde(skip_serializing_if = "Option::is_none", rename = "relation_type")]
+    pub relation_type: Option<RelationType>
 
 
 }

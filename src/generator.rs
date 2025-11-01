@@ -325,7 +325,7 @@ impl Generator{
                         voice_call_result: get_voice_call_result(),
                         roaming: r.from.operator.intl,
                         scenario: r.from.scenario.clone(),
-                        relaton_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
+                        relation_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
                     };
 
                         cdr_batch.push(tmp_cdr);
@@ -368,7 +368,7 @@ impl Generator{
                         voice_call_result: get_voice_call_result(),
                         roaming: r.from.operator.intl, 
                         scenario: r.from.scenario.clone(),
-                        relaton_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
+                        relation_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
                     };
 
                         cdr_batch.push(tmp_cdr);
@@ -411,7 +411,7 @@ impl Generator{
                         voice_call_result: get_voice_call_result(),
                         roaming: r.from.operator.intl, 
                         scenario: r.from.scenario.clone(),
-                        relaton_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
+                        relation_type: if self.with_relations { Some(r.relation_type.clone()) } else { None }
                     };
 
                         cdr_batch.push(tmp_cdr);
@@ -455,7 +455,7 @@ impl Generator{
                         voice_call_result: get_voice_call_result(),
                         roaming: if rng.gen_bool(0.05) { 1 } else { 0 }, 
                         scenario: self.customers[from_idx].clone().scenario,
-                        relaton_type: if self.with_relations { Some(RelationType::UNDEFINED) } else { None }
+                        relation_type: if self.with_relations { Some(RelationType::UNDEFINED) } else { None }
                     };
 
                 cdr_batch.push(tmp_cdr);
